@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#090615">
+<title>LN</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#090615}
+.universe{position:relative;width:100%;height:100%;overflow:hidden;isolation:isolate;background:radial-gradient(ellipse at 50% 48%,#351650,#19102f 42%,#090615 85%)}
+.stars{position:absolute;inset:-20%;opacity:.7;background-image:radial-gradient(circle,#fff 1px,transparent 1.5px),radial-gradient(circle,#c9a2ff 1.5px,transparent 2px),radial-gradient(circle,#f5a9f0 1px,transparent 1.5px);background-size:67px 79px,113px 127px,173px 151px;background-position:5px 17px,42px 8px,90px 70px;animation:starfield 30s linear infinite}
+.glow{position:absolute;left:50%;top:50%;width:min(100vw,600px);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,#a747d52c,transparent 68%);animation:glow 6s ease-in-out infinite alternate}
+.orbit{position:absolute;left:50%;top:50%;width:min(82vw,400px);aspect-ratio:1;border:1px solid #c49aff26;border-radius:50%;transform:translate(-50%,-50%) scaleY(.55) rotate(-20deg)}
+.orbit:before,.orbit:after{content:"";position:absolute;width:5px;height:5px;background:#e6c8ff;border-radius:50%;box-shadow:0 0 12px 4px #a75cff88}
+.orbit:before{left:15%;top:20%}.orbit:after{right:13%;bottom:20%}
+.person{position:absolute;left:50%;top:50%;width:52px;height:70px;margin:-35px 0 0 -26px;z-index:4}
+.person svg{width:100%;height:100%;overflow:visible;image-rendering:pixelated}
+.man{filter:drop-shadow(0 0 9px #9c8aff88);animation:manTrip 12s cubic-bezier(.5,0,.25,1) infinite}
+.woman{filter:drop-shadow(0 0 10px #ff91e288);animation:womanTrip 12s cubic-bezier(.5,0,.25,1) infinite}
+.man .sprite{animation:bounceA .42s ease-in-out infinite alternate}.woman .sprite{animation:bounceB .5s ease-in-out infinite alternate}
+/* The arms are attached to the characters, so they travel with them. */
+.reach{position:absolute;top:46%;height:5px;width:12px;z-index:6;opacity:0;transform-origin:left center;image-rendering:pixelated}
+.man .reach{left:36px;background:#c5a3ff;box-shadow:0 0 8px #bd78ff;animation:stretchMan 12s ease-in-out infinite}
+.woman .reach{left:4px;background:#f2a8e8;box-shadow:0 0 8px #f2a8e8;transform-origin:right center;animation:stretchWoman 12s ease-in-out infinite}
+.reach:after{content:"";position:absolute;right:-3px;top:-2px;width:7px;height:7px;background:inherit;box-shadow:0 0 7px #e5b4ff}
+.hand-clasp{position:absolute;z-index:7;left:50%;top:50%;width:12px;height:12px;margin:-6px;opacity:0;background:#fff0ff;box-shadow:0 0 8px 4px #d78aff,0 0 22px #d78aff;image-rendering:pixelated;animation:clasp 12s ease-in-out infinite}
+.heart{position:absolute;left:50%;top:50%;width:25px;height:25px;margin:-12px;z-index:3;filter:drop-shadow(0 0 12px #d46bff);animation:heart 12s ease-in-out infinite}.heart svg{width:100%;height:100%}
+.sparkle{position:absolute;color:#e6c9ff;font-size:13px;text-shadow:0 0 10px #bf73ff;animation:twinkle 2s ease-in-out infinite alternate}
+.s1{left:19%;top:27%}.s2{left:78%;top:34%;animation-delay:-.8s}.s3{left:26%;top:72%;animation-delay:-1.3s}.s4{left:72%;top:75%;animation-delay:-.4s}.s5{left:49%;top:19%;animation-delay:-1s}.s6{left:84%;top:58%;animation-delay:-1.5s}
+.dust{position:absolute;left:50%;top:50%;width:4px;height:4px;border-radius:1px;background:#d8b7ff;box-shadow:0 0 8px #bd78ff;animation:dust 12s ease-in-out infinite}
+.d1{--x:-32vw;--y:-18vh;animation-delay:-1s}.d2{--x:31vw;--y:-23vh;animation-delay:-4s}.d3{--x:-27vw;--y:22vh;animation-delay:-6s}.d4{--x:34vw;--y:17vh;animation-delay:-2s}.d5{--x:-10vw;--y:-34vh;animation-delay:-8s}.d6{--x:13vw;--y:32vh;animation-delay:-5s}
+@keyframes manTrip{0%,100%{transform:translate(0,0) rotate(0)}12%{transform:translate(-12px,-12px) rotate(-12deg)}27%{transform:translate(-31vw,-12vh) rotate(-25deg)}39%{transform:translate(-34vw,5vh) rotate(14deg)}50%{transform:translate(-21vw,21vh) rotate(24deg)}61%{transform:translate(-10vw,12vh) rotate(-18deg)}72%{transform:translate(-3vw,3vh) rotate(8deg)}80%,94%{transform:translate(-25px,0) rotate(-4deg)}}
+@keyframes womanTrip{0%,100%{transform:translate(0,0) rotate(0)}12%{transform:translate(12px,-12px) rotate(12deg)}27%{transform:translate(31vw,12vh) rotate(25deg)}39%{transform:translate(34vw,-5vh) rotate(-14deg)}50%{transform:translate(21vw,-21vh) rotate(-24deg)}61%{transform:translate(10vw,-12vh) rotate(18deg)}72%{transform:translate(3vw,-3vh) rotate(-8deg)}80%,94%{transform:translate(25px,0) rotate(4deg)}}
+/* Arms hilariously telescope out, meet, then shrink to a hand-hold. */
+@keyframes stretchMan{0%,64%,100%{width:12px;opacity:0}68%{width:24px;opacity:1}72%{width:min(40vw,190px);opacity:1}76%{width:min(48vw,230px);opacity:1}80%{width:42px;opacity:1}83%,94%{width:23px;opacity:1}}
+@keyframes stretchWoman{0%,64%,100%{width:12px;opacity:0}68%{width:24px;opacity:1}72%{width:min(40vw,190px);opacity:1}76%{width:min(48vw,230px);opacity:1}80%{width:42px;opacity:1}83%,94%{width:23px;opacity:1}}
+@keyframes clasp{0%,78%,100%{opacity:0;transform:scale(.2)}80%{opacity:1;transform:scale(1.5)}83%,94%{opacity:1;transform:scale(1)}}
+@keyframes heart{0%,10%,64%,100%{transform:scale(.65);opacity:.5}27%,50%{transform:scale(1.8);opacity:1}80%,94%{transform:scale(.75);opacity:.35}}
+@keyframes bounceA{from{transform:translateY(-2px) rotate(-4deg)}to{transform:translateY(3px) rotate(5deg)}}
+@keyframes bounceB{from{transform:translateY(2px) rotate(5deg)}to{transform:translateY(-3px) rotate(-5deg)}}
+@keyframes dust{0%,100%{transform:translate(-50%,-50%) scale(.3);opacity:0}25%,55%{transform:translate(calc(-50% + var(--x)),calc(-50% + var(--y))) scale(1.3);opacity:.9}80%{transform:translate(-50%,-50%) scale(.5);opacity:.2}}
+@keyframes twinkle{from{opacity:.25;transform:scale(.7) rotate(0)}to{opacity:1;transform:scale(1.3) rotate(35deg)}}
+@keyframes starfield{to{background-position:75px 100px,5px 20px,110px 65px}}
+@keyframes glow{from{opacity:.6;scale:.85}to{opacity:1;scale:1.12}}
+@media(max-width:420px){.person{width:44px;height:62px;margin:-31px 0 0 -22px}.man .reach{left:31px}.woman .reach{left:3px}}
+</style>
+</head>
+<body>
+<main class="universe" aria-label="Two pixel people travel through a purple universe, stretch their arms comically, and hold hands">
+<div class="stars"></div><div class="glow"></div><div class="orbit"></div>
+<span class="sparkle s1">✦</span><span class="sparkle s2">✧</span><span class="sparkle s3">✦</span><span class="sparkle s4">✧</span><span class="sparkle s5">✦</span><span class="sparkle s6">✧</span>
+<i class="dust d1"></i><i class="dust d2"></i><i class="dust d3"></i><i class="dust d4"></i><i class="dust d5"></i><i class="dust d6"></i>
+<div class="person man">
+<svg class="sprite" viewBox="0 0 24 32" shape-rendering="crispEdges" aria-hidden="true">
+<rect x="7" y="2" width="10" height="2" fill="#f3d4c5"/><rect x="6" y="4" width="12" height="9" fill="#e8bca7"/><rect x="4" y="6" width="2" height="4" fill="#e8bca7"/><rect x="18" y="6" width="2" height="4" fill="#e8bca7"/><rect x="7" y="7" width="3" height="2" fill="#30213b"/><rect x="14" y="7" width="3" height="2" fill="#30213b"/><rect x="10" y="10" width="4" height="1" fill="#b87979"/><rect x="8" y="12" width="8" height="2" fill="#e8bca7"/><rect x="6" y="14" width="12" height="9" fill="#a995ed"/><rect x="3" y="15" width="4" height="7" fill="#e8bca7"/><rect x="17" y="15" width="4" height="7" fill="#e8bca7"/><rect x="2" y="20" width="5" height="2" fill="#f3d4c5"/><rect x="17" y="20" width="5" height="2" fill="#f3d4c5"/><rect x="8" y="23" width="3" height="6" fill="#8071c8"/><rect x="13" y="23" width="3" height="6" fill="#8071c8"/><rect x="6" y="29" width="5" height="2" fill="#d8caff"/><rect x="13" y="29" width="5" height="2" fill="#d8caff"/><rect x="8" y="1" width="8" height="2" fill="#f3d4c5"/>
+</svg><div class="reach"></div>
+</div>
+<div class="person woman">
+<svg class="sprite" viewBox="0 0 24 32" shape-rendering="crispEdges" aria-hidden="true">
+<rect x="6" y="2" width="12" height="3" fill="#493025"/><rect x="4" y="4" width="16" height="9" fill="#67402f"/><rect x="5" y="5" width="14" height="8" fill="#e9bba7"/><rect x="3" y="5" width="3" height="13" fill="#493025"/><rect x="18" y="5" width="3" height="13" fill="#493025"/><rect x="7" y="7" width="3" height="2" fill="#30213b"/><rect x="14" y="7" width="3" height="2" fill="#30213b"/><rect x="10" y="10" width="4" height="1" fill="#b87979"/><rect x="8" y="12" width="8" height="2" fill="#e9bba7"/><rect x="6" y="14" width="12" height="7" fill="#d58ae9"/><rect x="4" y="15" width="3" height="7" fill="#e9bba7"/><rect x="17" y="15" width="3" height="7" fill="#e9bba7"/><rect x="2" y="20" width="5" height="2" fill="#ffd9ef"/><rect x="17" y="20" width="5" height="2" fill="#ffd9ef"/><rect x="7" y="21" width="10" height="3" fill="#b76bd5"/><rect x="6" y="24" width="12" height="2" fill="#b76bd5"/><rect x="8" y="26" width="3" height="3" fill="#e9bba7"/><rect x="13" y="26" width="3" height="3" fill="#e9bba7"/><rect x="6" y="29" width="5" height="2" fill="#ffd9ef"/><rect x="13" y="29" width="5" height="2" fill="#ffd9ef"/><rect x="7" y="3" width="10" height="2" fill="#493025"/>
+</svg><div class="reach"></div>
+</div>
+<div class="hand-clasp" aria-hidden="true"></div>
+<div class="heart" aria-hidden="true"><svg viewBox="0 0 16 16" shape-rendering="crispEdges"><path fill="#d99aff" d="M2 2h4v2h4V2h4v2h2v5h-2v2h-2v2H9v2H7v-2H5v-2H3V9H1V4h1z"/><rect x="3" y="3" width="2" height="1" fill="#fff0ff"/><rect x="10" y="3" width="2" height="1" fill="#fff0ff"/></svg></div>
+</main>
+</body>
+</html>

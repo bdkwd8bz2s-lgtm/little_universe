@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LN</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{background:#090615;color:#fff}
+.space{position:relative;width:100%;height:100%;overflow:hidden;background:radial-gradient(ellipse,#54206f 0%,#211035 48%,#07050f 100%)}
+.stars{position:absolute;inset:-30%;background-image:radial-gradient(#fff 1px,transparent 1.5px),radial-gradient(#d8a1ff 1.5px,transparent 2px),radial-gradient(#ffb9f1 1px,transparent 2px);background-size:53px 67px,91px 107px,137px 151px;animation:stars 25s linear infinite}
+.orbit{position:absolute;left:50%;top:50%;width:85vw;max-width:420px;aspect-ratio:1;border:1px solid #d5a2ff55;border-radius:50%;transform:translate(-50%,-50%) scaleY(.5) rotate(-20deg)}
+.person{position:absolute;left:50%;top:50%;width:48px;height:64px;margin:-32px 0 0 -24px;z-index:3}
+.person svg{width:100%;height:100%;overflow:visible}
+.man{animation:man 12s ease-in-out infinite;filter:drop-shadow(0 0 8px #a58aff)}
+.woman{animation:woman 12s ease-in-out infinite;filter:drop-shadow(0 0 8px #ff9be8)}
+.sprite{animation:dance .4s ease-in-out infinite alternate}
+.arm{position:absolute;top:47%;height:6px;width:10px;opacity:0;z-index:5}
+.man .arm{left:32px;transform-origin:left center;background:#c8a0ff;box-shadow:0 0 10px #c8a0ff;animation:longarm 12s ease-in-out infinite}
+.woman .arm{left:3px;transform-origin:right center;background:#ffb1eb;box-shadow:0 0 10px #ffb1eb;animation:longarm 12s ease-in-out infinite}
+.arm:after{content:"";position:absolute;right:-3px;top:-2px;width:9px;height:9px;background:inherit}
+.hand{position:absolute;left:50%;top:50%;width:12px;height:12px;background:#fff0ff;box-shadow:0 0 8px 5px #d78aff;margin:-6px;opacity:0;z-index:6;animation:clasp 12s infinite}
+.heart{position:absolute;left:50%;top:50%;width:28px;height:28px;margin:-14px;z-index:2;filter:drop-shadow(0 0 12px #ed85ff);animation:heart 12s ease-in-out infinite}
+.heart svg{width:100%;height:100%}
+.spark{position:absolute;color:#f1d5ff;text-shadow:0 0 10px #c26bff;animation:twinkle 1.5s infinite alternate}
+.s1{left:17%;top:25%}.s2{left:78%;top:32%}.s3{left:26%;top:75%}.s4{left:73%;top:78%}.s5{left:48%;top:17%}.s6{left:87%;top:58%}
+@keyframes stars{to{background-position:80px 90px,5px 20px,120px 70px}}
+@keyframes man{0%,100%{transform:translate(0,0) rotate(0)}12%{transform:translate(-12px,-10px) rotate(-15deg)}27%{transform:translate(-32vw,-12vh) rotate(-30deg)}39%{transform:translate(-34vw,5vh) rotate(18deg)}50%{transform:translate(-22vw,20vh) rotate(28deg)}62%{transform:translate(-9vw,10vh) rotate(-15deg)}72%{transform:translate(-3vw,2vh) rotate(8deg)}80%,94%{transform:translate(-24px,0) rotate(-5deg)}}
+@keyframes woman{0%,100%{transform:translate(0,0) rotate(0)}12%{transform:translate(12px,-10px) rotate(15deg)}27%{transform:translate(32vw,12vh) rotate(30deg)}39%{transform:translate(34vw,-5vh) rotate(-18deg)}50%{transform:translate(22vw,-20vh) rotate(-28deg)}62%{transform:translate(9vw,-10vh) rotate(15deg)}72%{transform:translate(3vw,-2vh) rotate(-8deg)}80%,94%{transform:translate(24px,0) rotate(5deg)}}
+@keyframes longarm{0%,63%,100%{width:10px;opacity:0}67%{width:30px;opacity:1}71%{width:45vw;opacity:1}75%{width:55vw;opacity:1}78%{width:40px;opacity:1}82%,94%{width:24px;opacity:1}}
+@keyframes clasp{0%,77%,100%{opacity:0;transform:scale(.2)}79%{opacity:1;transform:scale(1.5)}82%,94%{opacity:1;transform:scale(1)}}
+@keyframes heart{0%,10%,63%,100%{transform:scale(.6);opacity:.5}27%,50%{transform:scale(1.9);opacity:1}80%,94%{transform:scale(.75);opacity:.5}}
+@keyframes dance{from{translate:0 -2px;rotate:-5deg}to{translate:0 3px;rotate:5deg}}
+@keyframes twinkle{from{opacity:.2;scale:.7}to{opacity:1;scale:1.5}}
+@media(max-width:420px){.person{width:42px;height:58px;margin:-29px 0 0 -21px}.man .arm{left:29px}.woman .arm{left:2px}}
+</style>
+</head>
+<body>
+<main class="space">
+<div class="stars"></div><div class="orbit"></div>
+<span class="spark s1">✦</span><span class="spark s2">✧</span><span class="spark s3">✦</span><span class="spark s4">✧</span><span class="spark s5">✦</span><span class="spark s6">✧</span>
+<div class="person man">
+<svg class="sprite" viewBox="0 0 24 32" shape-rendering="crispEdges">
+<rect x="7" y="2" width="10" height="2" fill="#f3d4c5"/><rect x="6" y="4" width="12" height="9" fill="#e8bca7"/><rect x="4" y="6" width="2" height="4" fill="#e8bca7"/><rect x="18" y="6" width="2" height="4" fill="#e8bca7"/><rect x="7" y="7" width="3" height="2" fill="#30213b"/><rect x="14" y="7" width="3" height="2" fill="#30213b"/><rect x="10" y="10" width="4" height="1" fill="#b87979"/><rect x="8" y="12" width="8" height="2" fill="#e8bca7"/><rect x="6" y="14" width="12" height="9" fill="#a995ed"/><rect x="3" y="15" width="4" height="7" fill="#e8bca7"/><rect x="17" y="15" width="4" height="7" fill="#e8bca7"/><rect x="8" y="23" width="3" height="6" fill="#8071c8"/><rect x="13" y="23" width="3" height="6" fill="#8071c8"/><rect x="6" y="29" width="5" height="2" fill="#d8caff"/><rect x="13" y="29" width="5" height="2" fill="#d8caff"/><rect x="8" y="1" width="8" height="2" fill="#f3d4c5"/>
+</svg><div class="arm"></div>
+</div>
+<div class="person woman">
+<svg class="sprite" viewBox="0 0 24 32" shape-rendering="crispEdges">
+<rect x="6" y="2" width="12" height="3" fill="#493025"/><rect x="4" y="4" width="16" height="9" fill="#67402f"/><rect x="5" y="5" width="14" height="8" fill="#e9bba7"/><rect x="3" y="5" width="3" height="13" fill="#493025"/><rect x="18" y="5" width="3" height="13" fill="#493025"/><rect x="7" y="7" width="3" height="2" fill="#30213b"/><rect x="14" y="7" width="3" height="2" fill="#30213b"/><rect x="10" y="10" width="4" height="1" fill="#b87979"/><rect x="8" y="12" width="8" height="2" fill="#e9bba7"/><rect x="6" y="14" width="12" height="7" fill="#d58ae9"/><rect x="4" y="15" width="3" height="7" fill="#e9bba7"/><rect x="17" y="15" width="3" height="7" fill="#e9bba7"/><rect x="7" y="21" width="10" height="3" fill="#b76bd5"/><rect x="6" y="24" width="12" height="2" fill="#b76bd5"/><rect x="8" y="26" width="3" height="3" fill="#e9bba7"/><rect x="13" y="26" width="3" height="3" fill="#e9bba7"/><rect x="6" y="29" width="5" height="2" fill="#ffd9ef"/><rect x="13" y="29" width="5" height="2" fill="#ffd9ef"/><rect x="7" y="3" width="10" height="2" fill="#493025"/>
+</svg><div class="arm"></div>
+</div>
+<div class="hand"></div>
+<div class="heart"><svg viewBox="0 0 16 16" shape-rendering="crispEdges"><path fill="#d99aff" d="M2 2h4v2h4V2h4v2h2v5h-2v2h-2v2H9v2H7v-2H5v-2H3V9H1V4h1z"/><rect x="3" y="3" width="2" height="1" fill="#fff0ff"/><rect x="10" y="3" width="2" height="1" fill="#fff0ff"/></svg></div>
+</main>
+</body>
+</html>
